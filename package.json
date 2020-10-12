@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/khamis-ghazal/CaricateBoard#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "joi": "^13.1.0"
   }
 }
