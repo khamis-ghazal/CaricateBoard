@@ -25,14 +25,11 @@ authRouter.put("/change-account-information/:id", (req, res) => {
   const account = accounts.find(
     (account) => account.id === parseInt(req.params.id)
   );
-  if (!account)
-    return res.status(404).json("The account with the given ID was not found.");
+  if (!account) return res.status(404).json("The account with the given ID was not found.");
 
   const { error } = validateAccount(req.body);
 
-  if (error) {
-    res.status(400).json(error.details[0].message);
-  }
+  if (error) return res.status(400).json(error.details[0].message);
 
   account.name = req.body.name;
   account.email = req.body.email;
@@ -45,14 +42,11 @@ authRouter.put("/change-account-name/:id", (req, res) => {
   const account = accounts.find(
     (account) => account.id === parseInt(req.params.id)
   );
-  if (!account)
-    return res.status(404).json("The account with the given ID was not found.");
+  if (!account) return res.status(404).json("The account with the given ID was not found.");
 
   const { error } = validateAccountName(req.body);
 
-  if (error) {
-    res.status(400).json(error.details[0].message);
-  }
+  if (error) return res.status(400).json(error.details[0].message);
 
   account.name = req.body.name;
 
@@ -63,14 +57,11 @@ authRouter.put("/change-account-email/:id", (req, res) => {
   const account = accounts.find(
     (account) => account.id === parseInt(req.params.id)
   );
-  if (!account)
-    return res.status(404).json("The account with the given ID was not found.");
+  if (!account) return res.status(404).json("The account with the given ID was not found.");
 
   const { error } = validateAccountEmail(req.body);
 
-  if (error) {
-    res.status(400).json(error.details[0].message);
-  }
+  if (error) return res.status(400).json(error.details[0].message);
 
   account.email = req.body.email;
 
@@ -81,14 +72,11 @@ authRouter.put("/change-account-password/:id", (req, res) => {
   const account = accounts.find(
     (account) => account.id === parseInt(req.params.id)
   );
-  if (!account)
-    return res.status(404).json("The account with the given ID was not found.");
+  if (!account) return res.status(404).json("The account with the given ID was not found.");
 
   const { error } = validateAccountPassword(req.body);
 
-  if (error) {
-    res.status(400).json(error.details[0].message);
-  }
+  if (error) return res.status(400).json(error.details[0].message);
 
   account.password = req.body.password;
 
@@ -99,8 +87,7 @@ authRouter.delete("/remove-account/:id", (req, res) => {
   const account = accounts.find(
     (account) => account.id === parseInt(req.params.id)
   );
-  if (!account)
-    return res.status(404).json("The account with the given ID was not found.");
+  if (!account) return res.status(404).json("The account with the given ID was not found.");
 
   const index = accounts.indexOf(account);
   accounts.splice(index, 1);
